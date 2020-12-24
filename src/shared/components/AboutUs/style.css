@@ -1,0 +1,12 @@
+@import 'variables';
+
+.about-us {
+  padding-top: 27px;
+
+  &__ineer {
+    @media (min-width: $screen-md) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

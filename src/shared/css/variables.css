@@ -1,0 +1,40 @@
+/* shared/css/variables.css */
+
+@import 'fonts';
+
+/* colors */
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray: #8d8c8c;
+$color-gray-1: #b7b7b7;
+$color-black-1: #010000;
+$color-lightgray: #e1e1e1;
+$color-main1: #4c4b4b;
+$color-main2: #fefefe;
+$color-clementine: #ef6c00;
+$color-orange: #ffa500;
+$color-orange-1: #ec6b0e;
+$color-squash: #fc831f;
+$color-peeled-almonds: #fee6d2;
+$color-diesel: #010000;
+$color-alto: #d7d7d7;
+$color-cerulean-blue: #2638bb;
+$color-bay-of-many: #283593;
+$color-deep-purple: #2b3191;
+$color-blue-steel: #5873b7;
+$color-error: #f44336;
+
+/* fonts */
+$font-source-sans-pro: 'Source Sans Pro', sans-serif;
+$font-overpass: 'Overpass', sans-serif;
+
+/* media queries ranges */
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1200px;
+
+/* containers */
+$container-sm: 290px;
+$container-md: 750px;
+$container-lg: 960px;
+$container-xl: 1170px;

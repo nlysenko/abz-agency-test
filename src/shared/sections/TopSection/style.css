@@ -1,0 +1,94 @@
+@import 'variables';
+
+.top-section {
+  min-height: 393px;
+  background-image: url(~assets/img/banner.webp);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin-bottom: 65px;
+
+  @media (min-width: $screen-md) {
+    min-height: 622px;
+    background-image: url(~assets/img/banner@2x.webp);
+    margin-bottom: 111px;
+  }
+
+  @media (min-width: $screen-lg) {
+    min-height: 722px;
+    background-image: url(~assets/img/banner@3x.webp);
+    margin-bottom: 135px;
+  }
+
+  @media (min-width: $screen-xl) {
+    min-height: 676px;
+    background-image: url(~assets/img/banner@4x.webp);
+  }
+
+  &__header {
+    font-size: 30px;
+    font-weight: 400;
+    color: $color-white;
+    padding-top: 64px;
+    font-family: $font-overpass;
+    text-align: center;
+
+    @media (min-width: $screen-md) {
+      font-size: 42px;
+      max-width: 385px;
+      text-align: left;
+      padding-top: 110px;
+      line-height: 1.2;
+    }
+
+    @media (min-width: $screen-lg) {
+      font-size: 50px;
+      max-width: 450px;
+      padding-top: 128px;
+    }
+  }
+
+  &__specification {
+    font-size: 16px;
+    text-align: center;
+    color: $color-lightgray;
+    padding: 13px 0 38px 0;
+    line-height: 1.4;
+
+    @media (min-width: $screen-md) {
+      font-size: 18px;
+      max-width: 385px;
+      text-align: left;
+      padding-top: 24px;
+      line-height: 1.38;
+      padding-bottom: 34px;
+    }
+
+    @media (min-width: $screen-lg) {
+      font-size: 20px;
+      max-width: 450px;
+      line-height: 1.3;
+      padding-bottom: 39px;
+    }
+
+    @media (min-width: $screen-xl) {
+      max-width: 540px;
+      padding-bottom: 33px;
+    }
+
+    span:first-child {
+      @media (min-width: $screen-xl) {
+        display: block;
+        max-width: 460px;
+      }
+    }
+
+    span:last-child {
+      display: none;
+
+      @media (min-width: $screen-md) {
+        display: inline;
+      }
+    }
+  }
+}

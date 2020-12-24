@@ -1,0 +1,132 @@
+@import 'variables';
+
+.about-me {
+  padding-bottom: 67px;
+
+  @media (min-width: $screen-md) {
+    padding-bottom: 135px;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding-bottom: 123px;
+  }
+
+  @media (min-width: $screen-xl) {
+    padding-bottom: 80px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+
+    @media (min-width: $screen-md) {
+      flex-direction: row;
+      align-items: flex-start;
+      padding-top: 44px;
+    }
+
+    @media (min-width: $screen-lg) {
+      padding-top: 28px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding: 44px 0 0 38px;
+    }
+  }
+
+  &__man-mobile-img {
+    display: block;
+    width: 220px;
+
+    @media (min-width: $screen-lg) {
+      width: 289px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $screen-md) {
+      align-items: flex-start;
+      padding-left: 30px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-left: 64px;
+    }
+  }
+
+  &__caption {
+    font-size: 22px;
+    font-family: $font-overpass;
+    text-align: center;
+    padding-top: 25px;
+    width: 280px;
+    line-height: 1.2;
+
+    @media (min-width: $screen-md) {
+      width: 100%;
+      padding-top: 0;
+      font-size: 26px;
+      text-align: left;
+    }
+
+    @media (min-width: $screen-lg) {
+      padding-top: 18px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-top: 0;
+    }
+  }
+
+  &__experience,
+  &__initiatives {
+    font-size: 16px;
+    text-align: center;
+    color: $color-main1;
+    line-height: 1.4;
+
+    @media (min-width: $screen-md) {
+      text-align: left;
+    }
+  }
+
+  &__experience {
+    padding-top: 15px;
+
+    @media (min-width: $screen-md) {
+      padding-top: 15px;
+    }
+
+    @media (min-width: $screen-lg) {
+      padding-top: 10px;
+    }
+  }
+
+  &__initiatives {
+    padding: 21px 0 16px 0;
+
+    @media (min-width: $screen-md) {
+      padding-bottom: 20px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-bottom: 14px;
+    }
+  }
+
+  &__sign-up {
+    font-size: 22px;
+    font-weight: bold;
+    color: $color-clementine;
+
+    &:hover {
+      color: $color-orange;
+    }
+  }
+}

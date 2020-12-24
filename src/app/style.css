@@ -1,0 +1,88 @@
+@import 'variables';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+* {
+  outline: none !important;
+}
+
+/* Set core body defaults */
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background-color: $color-white;
+  font-size: 16px;
+  font-family: $font-source-sans-pro;
+  color: $color-black;
+}
+
+/* Remove margin */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h2 {
+  font-family: $font-overpass;
+  font-size: 26px;
+  text-align: center;
+
+  @media (min-width: $screen-md) {
+    font-size: 42px;
+  }
+}
+
+/* Remove list styles and default padding on ul element
+ with a class attribute */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Set basic styles for links */
+a[class] {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+select {
+  font: inherit;
+}
+
+/* Make main container */
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media (min-width: $screen-md) {
+    width: $container-md;
+  }
+
+  @media (min-width: $screen-lg) {
+    width: $container-lg;
+  }
+
+  @media (min-width: $screen-xl) {
+    width: $container-xl;
+  }
+}

@@ -1,0 +1,136 @@
+@import 'variables';
+
+.my-relationships {
+  padding-bottom: 76px;
+
+  @media (min-width: $screen-md) {
+    padding-bottom: 120px;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding-bottom: 142px;
+  }
+
+  &__title {
+    @media (min-width: $screen-md) {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $screen-md) {
+      width: 595px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: $screen-lg) {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 52px;
+    }
+  }
+
+  &__lang {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 33px;
+
+    @media (min-width: $screen-md) {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-top: 49px;
+    }
+
+    @media (min-width: $screen-lg) {
+      flex-direction: column;
+      padding-top: 0;
+      width: 295px;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 360px;
+    }
+  }
+
+  &__lang-img-top {
+    width: 90px;
+
+    @media (min-width: $screen-lg) {
+      width: 100px;
+    }
+  }
+
+  &__lang-body {
+    padding-top: 8px;
+
+    @media (min-width: $screen-md) {
+      padding-top: 0;
+      padding-left: 32px;
+    }
+
+    @media (min-width: $screen-lg) {
+      padding-left: 0;
+      padding-top: 20px;
+    }
+  }
+
+  &__lang-title {
+    text-align: center;
+    font-family: $font-overpass;
+    font-size: 22px;
+
+    @media (min-width: $screen-md) {
+      text-align: left;
+      font-size: 26px;
+    }
+  }
+
+  &__lang-text {
+    padding-top: 5px;
+    line-height: 1.35;
+    text-align: center;
+    font-size: 16px;
+    color: $color-main1;
+
+    @media (min-width: $screen-md) {
+      text-align: left;
+    }
+
+    @media (min-width: $screen-lg) {
+      padding-top: 13px;
+    }
+  }
+
+  &__html-text {
+    @media (min-width: $screen-lg) {
+      padding-right: 10px;
+    }
+  }
+
+  &__css-text {
+    @media (min-width: $screen-lg) {
+      padding-right: 70px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-right: 50px;
+    }
+  }
+
+  &__javascript-text {
+    @media (min-width: $screen-lg) {
+      padding-right: 20px;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-right: 0;
+    }
+  }
+}

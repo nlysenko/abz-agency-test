@@ -1,0 +1,11 @@
+@import 'variables';
+
+.page-footer {
+  height: 460px;
+  background-color: $color-deep-purple;
+  color: $color-white;
+
+  @media (min-width: $screen-md) {
+    height: 315px;
+  }
+}

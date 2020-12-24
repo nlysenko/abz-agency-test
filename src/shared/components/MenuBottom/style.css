@@ -1,0 +1,24 @@
+@import 'variables';
+
+.menu-bottom {
+  height: 226px;
+  border-bottom: 1px solid $color-blue-steel;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: $screen-md) {
+    height: 86px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $screen-md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

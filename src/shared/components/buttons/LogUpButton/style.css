@@ -1,0 +1,23 @@
+@import 'variables';
+
+.sugn-up-button {
+  text-align: center;
+  padding-top: 7px;
+  width: 290px;
+  height: 40px;
+  color: $color-white;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: $color-clementine;
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto;
+
+  @media (min-width: $screen-md) {
+    margin: 0;
+  }
+
+  &:hover {
+    background-color: $color-orange;
+  }
+}

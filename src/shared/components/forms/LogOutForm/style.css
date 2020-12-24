@@ -1,0 +1,15 @@
+@import 'variables';
+
+.log-out-form {
+  padding-top: 30px;
+  padding-left: 15px;
+
+  @media (min-width: $screen-md) {
+    padding-left: 23px;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding-top: 0;
+    padding-left: 15px;
+  }
+}

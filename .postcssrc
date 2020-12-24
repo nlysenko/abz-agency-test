@@ -1,0 +1,11 @@
+{
+  "plugins": {
+    "postcss-import": {
+      "glob": true,
+      "path": "./src/shared/css"
+    },
+    "postcss-cssnext": {},
+    "postcss-nested": {},
+    "postcss-simple-vars":{},
+  }
+}

@@ -1,0 +1,115 @@
+@import 'variables';
+
+.requirements {
+  height: 1031px;
+  background-image: url(~assets/img/building.webp);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  @media (min-width: $screen-md) {
+    height: 878px;
+    background-image: url(~assets/img/building@2x.webp);
+  }
+
+  @media (min-width: $screen-lg) {
+    height: 754px;
+    background-image: url(~assets/img/building@3x.webp);
+  }
+
+  @media (min-width: $screen-xl) {
+    height: 693px;
+    background-image: url(~assets/img/building@4x.webp);
+  }
+
+  &__title {
+    margin: 0 auto;
+    max-width: 270px;
+    padding-top: 64px;
+    color: $color-white;
+    line-height: 1.2;
+
+    @media (min-width: $screen-md) {
+      max-width: 430px;
+      padding-top: 112px;
+    }
+
+    @media (min-width: $screen-lg) {
+      max-width: 750px;
+      padding-top: 130px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+
+    @media (min-width: $screen-md) {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    @media (min-width: $screen-xl) {
+      padding-top: 35px;
+    }
+  }
+
+  &__bg-img {
+    width: 257px;
+    height: 216px;
+    background-image: url('~assets/img/man-laptop.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    @media (min-width: $screen-md) {
+      width: 343px;
+      height: 407px;
+      background-image: url('~assets/img/man-laptop-tb.webp');
+      margin-top: 14px;
+    }
+
+    @media (min-width: $screen-lg) {
+      width: 429px;
+      height: 361px;
+      background-image: url('~assets/img/man-laptop.webp');
+      margin-top: 30px;
+    }
+
+    @media (min-width: $screen-xl) {
+      margin-top: 16px;
+      margin-right: 60px;
+    }
+  }
+
+  &__body {
+    padding-top: 11px;
+
+    @media (min-width: $screen-md) {
+      padding-top: 0;
+      width: 345px;
+    }
+
+    @media (min-width: $screen-lg) {
+      width: 455px;
+    }
+
+    @media (min-width: $screen-xl) {
+      width: 555px;
+    }
+  }
+
+  &__text {
+    line-height: 1.4;
+    text-align: center;
+    color: $color-main2;
+    padding: 11px 0;
+
+    @media (min-width: $screen-md) {
+      text-align: left;
+    }
+  }
+}
