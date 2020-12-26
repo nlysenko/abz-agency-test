@@ -14,7 +14,7 @@ import './style.css'
 
 const RegistrationForm = () => {
   const [positions, setPositions] = useState([
-    { name: 'Select your position', id: 1 },
+    // { name: 'Select your position', id: 1 },
   ])
   const [loadingPositions, setLoadingPositions] = useState(false)
   const [positionsIsLoaded, setPositionsIsLoaded] = useState(false)
@@ -47,7 +47,7 @@ const RegistrationForm = () => {
     email: { value: '', error: '' },
     phone: { value: '', error: '' },
     position: { value: '', options: [], error: '' },
-    photo: { value: '', error: '' },
+    photo: { name: '', value: '', error: '' },
   }
 
   const validationStateSchema = {
@@ -76,21 +76,13 @@ const RegistrationForm = () => {
       required: true,
       validator: {
         regEx: /^[0-9]/,
-        error: 'Invalid phone format',
+        error: 'Invalid positions format',
       },
     },
 
     photo: {
       required: true,
-      validator: {
-        width: 70,
-        height: 70,
-        size: 5000000,
-        error: {
-          size: 'Size must not exceed 5MB',
-          resolution: 'Resolution at least 70x70px',
-        },
-      },
+      error: '',
     },
   }
 
@@ -104,21 +96,23 @@ const RegistrationForm = () => {
     onSubmitForm
   )
 
-  const errorStyle = {
-    color: 'red',
-    fontSize: '13px',
-  }
-
   return (
     <form className="registration-form" onSubmit={handleOnSubmit}>
       <div className="registration-form__inner">
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="name">
+          <label
+            className={`registration-form__label ${
+              state.name.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="name"
+          >
             Name
           </label>
 
           <input
-            className="registration-form__item"
+            className={`registration-form__item ${
+              state.name.error ? 'registration-form__item--error' : ''
+            }`}
             id="name"
             type="text"
             name="name"
@@ -127,18 +121,31 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.name.error && <p style={errorStyle}>{state.name.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.name.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.name.error}
+            </p>
+          ) : !state.name.value ? (
+            <p className="registration-form__assistive-text">Enter your name</p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="email">
+          <label
+            className={`registration-form__label ${
+              state.email.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="email"
+          >
             Email
           </label>
 
           <input
-            className="registration-form__item"
+            className={`registration-form__item ${
+              state.email.error ? 'registration-form__item--error' : ''
+            }`}
             id="email"
             name="email"
             type="email"
@@ -147,18 +154,33 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.email.error && <p style={errorStyle}>{state.email.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.email.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.email.error}
+            </p>
+          ) : !state.email.value ? (
+            <p className="registration-form__assistive-text">
+              Enter your email
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="phone">
+          <label
+            className={`registration-form__label ${
+              state.phone.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="phone"
+          >
             Phone
           </label>
 
           <input
-            className="registration-form__item"
+            className={`registration-form__item ${
+              state.phone.error ? 'registration-form__item--error' : ''
+            }`}
             id="phone"
             name="phone"
             type="tel"
@@ -167,9 +189,17 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.phone.error && <p style={errorStyle}>{state.phone.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.phone.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.phone.error}
+            </p>
+          ) : !state.phone.value ? (
+            <p className="registration-form__assistive-text">
+              Enter your phone
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
@@ -212,7 +242,17 @@ const RegistrationForm = () => {
             false
           )}
 
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.position.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.position.error}
+            </p>
+          ) : !state.position.value ? (
+            <p className="registration-form__assistive-text">
+              Select your position
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
@@ -226,8 +266,14 @@ const RegistrationForm = () => {
               onChange={handleOnChange}
             />
 
-            <span className="registration-form__file-name">
-              Upload your photo
+            <span
+              className={`registration-form__file-placeholder ${
+                state.photo.error
+                  ? 'registration-form__file-placeholder--error'
+                  : ''
+              }`}
+            >
+              {!state.photo.name ? `Upload your photo` : state.photo.name}
             </span>
 
             <i className="registration-form__upload-icon-wrapper">
@@ -235,11 +281,17 @@ const RegistrationForm = () => {
             </i>
           </label>
 
-          {state.photo.error && <p style={errorStyle}>{state.photo.error}</p>}
-
-          <p className="registration-form__assistive-text">
-            File format jpg up to 5 MB, the minimum size of 70x70px
-          </p>
+          {state.photo.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.photo.error}
+            </p>
+          ) : !state.photo.value ? (
+            <p className="registration-form__assistive-text">
+              File format jpg up to 5 MB, the minimum size of 70x70px
+            </p>
+          ) : (
+            false
+          )}
         </div>
       </div>
 
