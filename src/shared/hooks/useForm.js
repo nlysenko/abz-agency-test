@@ -74,7 +74,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
         const photo = event.target.files[0]
 
         if (photo) {
-          if (photo.size > 5000000) {
+          if (photo.size > 5242880) {
             let error = 'Size must not exceed 5MB'
 
             setState((prevState) => ({

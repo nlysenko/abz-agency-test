@@ -14,7 +14,7 @@ import './style.css'
 
 const RegistrationForm = () => {
   const [positions, setPositions] = useState([
-    // { name: 'Select your position', id: 1 },
+    { name: 'Select your position', id: 1 },
   ])
   const [loadingPositions, setLoadingPositions] = useState(false)
   const [positionsIsLoaded, setPositionsIsLoaded] = useState(false)
@@ -46,7 +46,7 @@ const RegistrationForm = () => {
     name: { value: '', error: '' },
     email: { value: '', error: '' },
     phone: { value: '', error: '' },
-    position: { value: '', options: [], error: '' },
+    position_id: { value: '', options: [], error: '' },
     photo: { name: '', value: '', error: '' },
   }
 
@@ -68,14 +68,14 @@ const RegistrationForm = () => {
     phone: {
       required: true,
       validator: {
-        regEx: /^\+?3?8?(0[5-9][0-9]\d{7})$/,
+        regEx: /^[+]{0,1}380([0-9]{9})$/,
         error: 'Invalid phone format. Should start with code of Ukraine +380',
       },
     },
-    position: {
+    position_id: {
       required: true,
       validator: {
-        regEx: /^[0-9]/,
+        regEx: /^[1-9][0-9]*$/,
         error: 'Invalid positions format',
       },
     },
@@ -86,8 +86,46 @@ const RegistrationForm = () => {
     },
   }
 
-  function onSubmitForm(state) {
-    alert(JSON.stringify(state, null, 2))
+  async function onSubmitForm() {
+    let token = ''
+
+    await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (result.success) {
+            token = result.token
+          }
+        },
+
+        (error) => {
+          console.log('error: ', error)
+        }
+      )
+
+    if (token) {
+      const registrationForm = document.getElementById('registration-form')
+      const formData = new FormData(registrationForm)
+
+      fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert(data.message)
+
+            registrationForm.reset()
+          }
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    }
   }
 
   const { state, handleOnChange, handleOnSubmit, disable } = useForm(
@@ -97,7 +135,11 @@ const RegistrationForm = () => {
   )
 
   return (
-    <form className="registration-form" onSubmit={handleOnSubmit}>
+    <form
+      className="registration-form"
+      id="registration-form"
+      onSubmit={handleOnSubmit}
+    >
       <div className="registration-form__inner">
         <div className="registration-form__form-group">
           <label
@@ -113,7 +155,6 @@ const RegistrationForm = () => {
             className={`registration-form__item ${
               state.name.error ? 'registration-form__item--error' : ''
             }`}
-            id="name"
             type="text"
             name="name"
             value={state.name.value}
@@ -146,7 +187,6 @@ const RegistrationForm = () => {
             className={`registration-form__item ${
               state.email.error ? 'registration-form__item--error' : ''
             }`}
-            id="email"
             name="email"
             type="email"
             value={state.email.value}
@@ -181,7 +221,6 @@ const RegistrationForm = () => {
             className={`registration-form__item ${
               state.phone.error ? 'registration-form__item--error' : ''
             }`}
-            id="phone"
             name="phone"
             type="tel"
             value={state.phone.value}
@@ -206,9 +245,8 @@ const RegistrationForm = () => {
           <div className="registration-form__position-wrapper">
             <select
               className="registration-form__positions"
-              id="position"
-              name="position"
-              value={state.position.value}
+              name="position_id"
+              value={state.position_id.value}
               onChange={handleOnChange}
               onClick={getPositions}
             >
@@ -242,11 +280,11 @@ const RegistrationForm = () => {
             false
           )}
 
-          {state.position.error ? (
+          {state.position_id.error ? (
             <p className="registration-form__assistive-text registration-form__assistive-text--error">
               {state.position.error}
             </p>
-          ) : !state.position.value ? (
+          ) : !state.position_id.value ? (
             <p className="registration-form__assistive-text">
               Select your position
             </p>
