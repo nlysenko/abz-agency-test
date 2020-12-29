@@ -44,11 +44,10 @@ function useForm(stateSchema, validationSchema = {}, callback) {
   const handleOnChange = useCallback(
     (event) => {
       const name = event.target.name
+      let error = ''
 
       if (name !== 'photo') {
         setIsDirty(true)
-
-        let error = ''
 
         const value = event.target.value
 
@@ -71,6 +70,59 @@ function useForm(stateSchema, validationSchema = {}, callback) {
           ...prevState,
           [name]: { value, error },
         }))
+      } else {
+        const photo = event.target.files[0]
+
+        if (photo) {
+          if (photo.size > 5242880) {
+            let error = 'Size must not exceed 5MB'
+
+            setState((prevState) => ({
+              ...prevState,
+              [name]: { error },
+            }))
+          } else {
+            const reader = new FileReader()
+
+            reader.onload = () => {
+              let img = document.createElement('img')
+
+              img.src = reader.result
+
+              img.onload = () => {
+                let width = img.width
+                let height = img.height
+
+                if (width < 70 || height < 70) {
+                  let error = 'Resolution at least 70x70px'
+
+                  setState((prevState) => ({
+                    ...prevState,
+                    [name]: { error },
+                  }))
+                } else {
+                  let value = reader.result
+
+                  setState((prevState) => ({
+                    ...prevState,
+                    [name]: { name: photo.name, value },
+                  }))
+                }
+              }
+            }
+
+            reader.onerror = () => {
+              let error = `Failed to read file! ${reader.error}`
+
+              setState((prevState) => ({
+                ...prevState,
+                [name]: { error },
+              }))
+            }
+
+            reader.readAsDataURL(photo)
+          }
+        }
       }
     },
     [validationSchema]

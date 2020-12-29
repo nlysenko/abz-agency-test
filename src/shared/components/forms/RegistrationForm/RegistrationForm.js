@@ -46,8 +46,8 @@ const RegistrationForm = () => {
     name: { value: '', error: '' },
     email: { value: '', error: '' },
     phone: { value: '', error: '' },
-    position: { value: '', options: [], error: '' },
-    photo: { value: '', error: '' },
+    position_id: { value: '', options: [], error: '' },
+    photo: { name: '', value: '', error: '' },
   }
 
   const validationStateSchema = {
@@ -68,34 +68,64 @@ const RegistrationForm = () => {
     phone: {
       required: true,
       validator: {
-        regEx: /^\+?3?8?(0[5-9][0-9]\d{7})$/,
+        regEx: /^[+]{0,1}380([0-9]{9})$/,
         error: 'Invalid phone format. Should start with code of Ukraine +380',
       },
     },
-    position: {
+    position_id: {
       required: true,
       validator: {
-        regEx: /^[0-9]/,
-        error: 'Invalid phone format',
+        regEx: /^[1-9][0-9]*$/,
+        error: 'Invalid positions format',
       },
     },
 
     photo: {
       required: true,
-      validator: {
-        width: 70,
-        height: 70,
-        size: 5000000,
-        error: {
-          size: 'Size must not exceed 5MB',
-          resolution: 'Resolution at least 70x70px',
-        },
-      },
+      error: '',
     },
   }
 
-  function onSubmitForm(state) {
-    alert(JSON.stringify(state, null, 2))
+  async function onSubmitForm() {
+    let token = ''
+
+    await fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (result.success) {
+            token = result.token
+          }
+        },
+
+        (error) => {
+          console.log('error: ', error)
+        }
+      )
+
+    if (token) {
+      const registrationForm = document.getElementById('registration-form')
+      const formData = new FormData(registrationForm)
+
+      fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Token: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert(data.message)
+
+            registrationForm.reset()
+          }
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    }
   }
 
   const { state, handleOnChange, handleOnSubmit, disable } = useForm(
@@ -104,22 +134,27 @@ const RegistrationForm = () => {
     onSubmitForm
   )
 
-  const errorStyle = {
-    color: 'red',
-    fontSize: '13px',
-  }
-
   return (
-    <form className="registration-form" onSubmit={handleOnSubmit}>
+    <form
+      className="registration-form"
+      id="registration-form"
+      onSubmit={handleOnSubmit}
+    >
       <div className="registration-form__inner">
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="name">
+          <label
+            className={`registration-form__label ${
+              state.name.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="name"
+          >
             Name
           </label>
 
           <input
-            className="registration-form__item"
-            id="name"
+            className={`registration-form__item ${
+              state.name.error ? 'registration-form__item--error' : ''
+            }`}
             type="text"
             name="name"
             value={state.name.value}
@@ -127,19 +162,31 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.name.error && <p style={errorStyle}>{state.name.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.name.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.name.error}
+            </p>
+          ) : !state.name.value ? (
+            <p className="registration-form__assistive-text">Enter your name</p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="email">
+          <label
+            className={`registration-form__label ${
+              state.email.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="email"
+          >
             Email
           </label>
 
           <input
-            className="registration-form__item"
-            id="email"
+            className={`registration-form__item ${
+              state.email.error ? 'registration-form__item--error' : ''
+            }`}
             name="email"
             type="email"
             value={state.email.value}
@@ -147,19 +194,33 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.email.error && <p style={errorStyle}>{state.email.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.email.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.email.error}
+            </p>
+          ) : !state.email.value ? (
+            <p className="registration-form__assistive-text">
+              Enter your email
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
-          <label className="registration-form__label" htmlFor="phone">
+          <label
+            className={`registration-form__label ${
+              state.phone.error ? 'registration-form__label--error' : ''
+            }`}
+            htmlFor="phone"
+          >
             Phone
           </label>
 
           <input
-            className="registration-form__item"
-            id="phone"
+            className={`registration-form__item ${
+              state.phone.error ? 'registration-form__item--error' : ''
+            }`}
             name="phone"
             type="tel"
             value={state.phone.value}
@@ -167,18 +228,25 @@ const RegistrationForm = () => {
             onChange={handleOnChange}
           />
 
-          {state.phone.error && <p style={errorStyle}>{state.phone.error}</p>}
-
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.phone.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.phone.error}
+            </p>
+          ) : !state.phone.value ? (
+            <p className="registration-form__assistive-text">
+              Enter your phone
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
           <div className="registration-form__position-wrapper">
             <select
               className="registration-form__positions"
-              id="position"
-              name="position"
-              value={state.position.value}
+              name="position_id"
+              value={state.position_id.value}
               onChange={handleOnChange}
               onClick={getPositions}
             >
@@ -212,7 +280,17 @@ const RegistrationForm = () => {
             false
           )}
 
-          <p className="registration-form__assistive-text">Assistive text</p>
+          {state.position_id.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.position.error}
+            </p>
+          ) : !state.position_id.value ? (
+            <p className="registration-form__assistive-text">
+              Select your position
+            </p>
+          ) : (
+            false
+          )}
         </div>
 
         <div className="registration-form__form-group">
@@ -226,8 +304,14 @@ const RegistrationForm = () => {
               onChange={handleOnChange}
             />
 
-            <span className="registration-form__file-name">
-              Upload your photo
+            <span
+              className={`registration-form__file-placeholder ${
+                state.photo.error
+                  ? 'registration-form__file-placeholder--error'
+                  : ''
+              }`}
+            >
+              {!state.photo.name ? `Upload your photo` : state.photo.name}
             </span>
 
             <i className="registration-form__upload-icon-wrapper">
@@ -235,11 +319,17 @@ const RegistrationForm = () => {
             </i>
           </label>
 
-          {state.photo.error && <p style={errorStyle}>{state.photo.error}</p>}
-
-          <p className="registration-form__assistive-text">
-            File format jpg up to 5 MB, the minimum size of 70x70px
-          </p>
+          {state.photo.error ? (
+            <p className="registration-form__assistive-text registration-form__assistive-text--error">
+              {state.photo.error}
+            </p>
+          ) : !state.photo.value ? (
+            <p className="registration-form__assistive-text">
+              File format jpg up to 5 MB, the minimum size of 70x70px
+            </p>
+          ) : (
+            false
+          )}
         </div>
       </div>
 
