@@ -10,7 +10,7 @@ import styled, { keyframes } from 'styled-components'
 
 import User from '@/shared/components/User'
 import Navbar from '@/shared/components/Navbar'
-import LogOutForm from '@/shared/components/Forms/LogOutForm'
+import LogOutForm from '@/shared/forms/LogOutForm'
 
 import './style.css'
 

@@ -6,7 +6,7 @@
 
 import React from 'react'
 
-import RegistrationForm from '@/shared/components/forms/RegistrationForm'
+import RegistrationForm from '@/shared/forms/RegistrationForm'
 
 import './style.css'
 

@@ -6,7 +6,7 @@
 
 import React from 'react'
 
-import LogUpButton from '@/shared/components/buttons/LogUpButton'
+import LogUpButton from '@/shared/buttons/LogUpButton'
 
 import './style.css'
 

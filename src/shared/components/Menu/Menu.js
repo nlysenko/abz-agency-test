@@ -8,7 +8,7 @@ import React from 'react'
 
 import Navbar from '@/shared/components/Navbar'
 import User from '@/shared/components/User'
-import LogOutForm from '@/shared/components/Forms/LogOutForm'
+import LogOutForm from '@/shared/forms/LogOutForm'
 
 import './style.css'
 
