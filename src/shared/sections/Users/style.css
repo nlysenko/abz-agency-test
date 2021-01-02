@@ -1,17 +1,18 @@
 @import 'variables';
 
 .users {
+  padding-top: 65px;
+
+  @media (min-width: $screen-md) {
+    padding-top: 111px;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding-top: 134px;
+  }
+
   &__title {
-    padding-top: 65px;
     line-height: 1.2;
-
-    @media (min-width: $screen-md) {
-      padding-top: 111px;
-    }
-
-    @media (min-width: $screen-lg) {
-      padding-top: 134px;
-    }
   }
 
   &__attention {

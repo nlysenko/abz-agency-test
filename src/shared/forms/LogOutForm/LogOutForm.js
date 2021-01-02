@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import LogOutButton from '@/shared/components/buttons/LogOutButton'
+import LogOutButton from '@/shared/buttons/LogOutButton'
 
 import './style.css'
 

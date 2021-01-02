@@ -119,7 +119,7 @@ const RegistrationForm = () => {
           if (data.success) {
             alert(data.message)
 
-            registrationForm.reset()
+            document.location.reload()
           }
         })
         .catch((error) => {

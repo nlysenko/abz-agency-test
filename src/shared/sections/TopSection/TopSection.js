@@ -6,15 +6,15 @@
 
 import React from 'react'
 
-import LogUpButton from '@/shared/components/buttons/LogUpButton'
+import LogUpButton from '@/shared/buttons/LogUpButton'
 
 import './style.css'
 
 const TopSection = () => {
   return (
-    <section className="top-section" id="top-section">
+    <section className="top-section">
       <div className="container">
-        <h1 className="top-section__header">
+        <h1 className="top-section__header" id="top-section">
           Test assignment for Frontend Developer position
         </h1>
 
