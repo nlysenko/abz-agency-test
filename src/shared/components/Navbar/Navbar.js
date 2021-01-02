@@ -46,6 +46,7 @@ const Navbar = (props) => {
               smooth={true}
               offset={-100}
               className="navbar__link"
+              activeClass="navbar__link--active"
               onClick={toggleMenuPopup}
             >
               {link.name}
