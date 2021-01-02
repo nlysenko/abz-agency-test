@@ -6,15 +6,18 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  padding-top: 64px;
 
   @media (min-width: $screen-md) {
     height: 878px;
     background-image: url(~assets/img/building@2x.webp);
+    padding-top: 112px;
   }
 
   @media (min-width: $screen-lg) {
     height: 754px;
     background-image: url(~assets/img/building@3x.webp);
+    padding-top: 130px;
   }
 
   @media (min-width: $screen-xl) {
@@ -25,18 +28,15 @@
   &__title {
     margin: 0 auto;
     max-width: 270px;
-    padding-top: 64px;
     color: $color-white;
     line-height: 1.2;
 
     @media (min-width: $screen-md) {
       max-width: 430px;
-      padding-top: 112px;
     }
 
     @media (min-width: $screen-lg) {
       max-width: 750px;
-      padding-top: 130px;
     }
   }
 

@@ -2,12 +2,15 @@
 
 .registration {
   padding-bottom: 70px;
+  padding-top: 35px;
 
   @media (min-width: $screen-md) {
+    padding-top: 71px;
     padding-bottom: 120px;
   }
 
   @media (min-width: $screen-lg) {
+    padding-top: 91px;
     padding-bottom: 135px;
   }
 
@@ -17,15 +20,6 @@
 
   &__title {
     line-height: 1.2;
-    padding-top: 35px;
-
-    @media (min-width: $screen-md) {
-      padding-top: 71px;
-    }
-
-    @media (min-width: $screen-lg) {
-      padding-top: 91px;
-    }
   }
 
   &__text {
