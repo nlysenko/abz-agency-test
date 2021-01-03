@@ -14,8 +14,8 @@ import './style.css'
 
 const Relationships = () => {
   return (
-    <section className="my-relationships container">
-      <h2 className="my-relationships__title" id="relationships">
+    <section className="my-relationships container" id="relationships">
+      <h2 className="my-relationships__title">
         About my relationships with web-development
       </h2>
 

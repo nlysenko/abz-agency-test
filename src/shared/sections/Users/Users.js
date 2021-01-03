@@ -52,11 +52,9 @@ const Users = () => {
   }
 
   return (
-    <section className="users">
+    <section className="users" id="users">
       <div className="container">
-        <h2 className="users__title" id="users">
-          Our cheerful users
-        </h2>
+        <h2 className="users__title">Our cheerful users</h2>
 
         <p className="users__attention">
           Attention! Sorting users by registration date

@@ -10,9 +10,9 @@ import './style.css'
 
 const Requirements = () => {
   return (
-    <section className="requirements">
+    <section className="requirements" id="requirements">
       <div className="container">
-        <h2 className="requirements__title" id="requirements">
+        <h2 className="requirements__title">
           General requirements for the test task
         </h2>
 

@@ -13,10 +13,8 @@ import './style.css'
 
 const AboutMe = () => {
   return (
-    <section className="about-me container">
-      <h2 className="about-me__title" id="about-me">
-        Let&apos;s get acquainted
-      </h2>
+    <section className="about-me container" id="about-me">
+      <h2 className="about-me__title">Let&apos;s get acquainted</h2>
 
       <div className="about-me__content">
         <img src={ManMobile} className="about-me__man-mobile-img" />

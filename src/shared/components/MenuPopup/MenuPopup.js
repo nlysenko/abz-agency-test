@@ -26,9 +26,12 @@ const MenuPopup = (props) => {
     <div className="menu-popup">
       <SlideInLefDiv className="menu-popup__container">
         <User user={user} userIsLoaded={userIsLoaded} error={error} />
+
         <Navbar toggleMenuPopup={toggleMenuPopup} />
+
         <LogOutForm />
       </SlideInLefDiv>
+
       <div className="menu-popup__overlay" onClick={toggleMenuPopup}></div>
     </div>
   )

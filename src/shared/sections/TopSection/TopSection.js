@@ -12,9 +12,9 @@ import './style.css'
 
 const TopSection = () => {
   return (
-    <section className="top-section">
+    <section className="top-section" id="top-section">
       <div className="container">
-        <h1 className="top-section__header" id="top-section">
+        <h1 className="top-section__header">
           Test assignment for Frontend Developer position
         </h1>
 
