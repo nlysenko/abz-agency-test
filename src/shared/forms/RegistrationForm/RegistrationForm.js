@@ -54,7 +54,7 @@ const RegistrationForm = () => {
     name: {
       required: true,
       validator: {
-        regEx: /^[a-zA-Z]{2,60}$/,
+        regEx: /^[a-zA-Z]?([a-zA-Z0-9]|\s(?!\s)){2,60}[^\s]$/,
         error: 'Should be 2-60 characters',
       },
     },
