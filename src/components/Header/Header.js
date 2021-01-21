@@ -39,6 +39,10 @@ const Header = () => {
       )
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('overflow-is-hidden', menuPopupIsVisible)
+  }, [menuPopupIsVisible])
+
   return (
     <header className="header">
       {menuPopupIsVisible && screenWidth < 1024 ? (
